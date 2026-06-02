@@ -227,7 +227,7 @@ const NavbarOne = () => {
                             height={1000}
                             src={AllImages?.logoText}
                             alt="Logo"
-                            className="w-30 lg:w-40"
+                            className="w-40 lg:w-55"
                         />
                     </TransitionLink>
                 </div>
@@ -240,9 +240,9 @@ const NavbarOne = () => {
                         <DownloadModal>
                             <BorderCard className="!rounded-full">
                                 <span
-                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-sm text-xs font-medium text-[#111] hover:bg-white transition cursor-pointer"
+                                    className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/80 backdrop-blur-sm text-sm font-medium text-[#111] hover:bg-white transition cursor-pointer"
                                 >
-                                    <FaApple className="size-3.5" />
+                                    <FaApple className="size-4.5" />
                                     App Store
                                 </span>
                             </BorderCard>
@@ -250,9 +250,9 @@ const NavbarOne = () => {
                         <DownloadModal>
                             <BorderCard className="!rounded-full">
                                 <span
-                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-sm text-xs font-medium text-[#111] hover:bg-white transition cursor-pointer"
+                                    className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/80 backdrop-blur-sm text-sm font-medium text-[#111] hover:bg-white transition cursor-pointer"
                                 >
-                                    <IoLogoGooglePlaystore className="size-3.5" />
+                                    <IoLogoGooglePlaystore className="size-4.5" />
                                     Play Store
                                 </span>
                             </BorderCard>
