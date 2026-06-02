@@ -31,14 +31,6 @@ export const ThreeSteps = () => {
                 },
             });
 
-            /* ── Badge ── */
-            tl.from(".ts-badge", {
-                y: -24,
-                opacity: 0,
-                duration: 0.5,
-                ease: "power3.out",
-            }, 0);
-
             /* ── Heading SplitText depth ── */
             const split = SplitText.create(".ts-heading", {
                 type: "chars words",

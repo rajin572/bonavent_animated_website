@@ -108,33 +108,36 @@ const SectionGridCard = ({ id, cardData }: { id: number; cardData: ICardData }) 
         ease: "power2.out",
       }, 0.45);
 
-      /* ── Feature items stagger up ── */
-      tl.from(".sgc-feature", {
-        y: 32,
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.out",
-        stagger: 0.1,
-      }, 0.55);
+      /* ── Feature items + icon boxes (only rendered with featuredWithDescription) ── */
+      if (cardData.isFeatured && cardData.featuredWithDescription) {
+        tl.from(".sgc-feature", {
+          y: 32,
+          opacity: 0,
+          duration: 0.5,
+          ease: "power2.out",
+          stagger: 0.1,
+        }, 0.55);
 
-      /* ── Icon boxes spring in ── */
-      tl.from(".sgc-icon-box", {
-        scale: 0,
-        rotation: -25,
-        opacity: 0,
-        duration: 0.45,
-        ease: "back.out(2.2)",
-        stagger: 0.1,
-      }, 0.6);
+        tl.from(".sgc-icon-box", {
+          scale: 0,
+          rotation: -25,
+          opacity: 0,
+          duration: 0.45,
+          ease: "back.out(2.2)",
+          stagger: 0.1,
+        }, 0.6);
+      }
 
-      /* ── featuredText list items ── */
-      tl.from(".sgc-feat-text-item", {
-        x: -20,
-        opacity: 0,
-        duration: 0.45,
-        ease: "power2.out",
-        stagger: 0.08,
-      }, 0.55);
+      /* ── featuredText list items (only rendered without featuredWithDescription) ── */
+      if (cardData.isFeatured && !cardData.featuredWithDescription && cardData.featuredText) {
+        tl.from(".sgc-feat-text-item", {
+          x: -20,
+          opacity: 0,
+          duration: 0.45,
+          ease: "power2.out",
+          stagger: 0.08,
+        }, 0.55);
+      }
 
       /* ── Button ── */
       if (cardData.buttonText) {
