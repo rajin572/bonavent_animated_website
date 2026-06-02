@@ -117,17 +117,17 @@ const Hero = () => {
     return (
         <section
             ref={sectionRef}
-            className="min-h-[80vh] w-full p-3 md:p-4 lg:p-5 mt-12"
+            className="relative min-h-[calc(100vh-6rem)] w-full p-3 md:p-4 lg:p-5 mt-12"
             style={{ backgroundColor: PAGE_BG }}
         >
             <div
-                className="relative grid grid-cols-1 lg:grid-cols-2 h-auto lg:h-[calc(80vh)]"
+                className="relative grid grid-cols-1 lg:grid-cols-2 min-h-[calc(100vh-6rem)]"
                 style={{ gap: CARD_GAP }}
             >
                 {/* ── Left card ── */}
-                <div className="hero-left h-full" style={{ filter: "drop-shadow(0px 2px 2px rgba(0,0,0,0.15))" }}>
+                <div className="hero-left h-full min-h-[calc(100vh-6rem)]" style={{ filter: "drop-shadow(0px 2px 2px rgba(0,0,0,0.15))" }}>
                     <div
-                        className={`relative bg-white p-8 md:p-12 lg:p-14 xl:p-16 flex flex-col justify-between h-full min-h-[65vh] lg:min-h-0 ${!isDesktop ? "rounded-3xl" : ""}`}
+                        className={`relative bg-white p-8 md:p-12 lg:p-14 xl:p-16 flex flex-col justify-between h-full ${!isDesktop ? "rounded-3xl" : ""}`}
                         style={{ clipPath: isDesktop ? LEFT_CLIP : undefined }}
                     >
                         <div className="flex flex-col gap-7 md:gap-9 lg:gap-10">
@@ -163,9 +163,9 @@ const Hero = () => {
                 </div>
 
                 {/* ── Right card ── */}
-                <div className="hero-right h-full" style={{ filter: "drop-shadow(0px 2px 2px rgba(0,0,0,0.15))" }}>
+                <div className="hero-right h-full min-h-[calc(100vh-6rem)]" style={{ filter: "drop-shadow(0px 2px 2px rgba(0,0,0,0.15))" }}>
                     <div
-                        className={`relative overflow-hidden h-full min-h-[55vh] lg:min-h-0 ${!isDesktop ? "rounded-3xl" : ""}`}
+                        className={`relative overflow-hidden h-full ${!isDesktop ? "rounded-3xl" : ""}`}
                         style={{
                             backgroundColor: HERO_ACCENT,
                             clipPath: isDesktop ? RIGHT_CLIP : undefined,
@@ -178,7 +178,7 @@ const Hero = () => {
                         <Image
                             src={AllImages.bannerMockup}
                             alt="Bonavent app mockup"
-                            className="h-auto w-auto max-w-120 absolute bottom-0 left-1/2 -translate-x-1/2"
+                            className="h-[calc(90%-10rem)] w-auto absolute bottom-0 left-1/2 -translate-x-1/2"
                             width={1400}
                             height={1400}
                             fetchPriority="high"
@@ -187,20 +187,20 @@ const Hero = () => {
                     </div>
                 </div>
 
-                {/* ── Learn-more badge — desktop only ── */}
-                <div
-                    className="hero-learn-badge hidden lg:flex absolute items-center justify-center pointer-events-none"
-                    style={{
-                        left: "50%",
-                        bottom: 40,
-                        transform: "translate(-50%, 50%)",
-                        width: BADGE_SIZE,
-                        height: BADGE_SIZE,
-                        zIndex: 20,
-                    }}
-                >
-                    <LearnMoreBadge size={BADGE_SIZE} />
-                </div>
+            </div>
+            {/* ── Learn-more badge — desktop only ── */}
+            <div
+                className="hero-learn-badge hidden lg:flex absolute items-center justify-center pointer-events-none"
+                style={{
+                    left: "50%",
+                    bottom: "7%",
+                    transform: "translate(-50%, 50%)",
+                    width: BADGE_SIZE,
+                    height: BADGE_SIZE,
+                    zIndex: 20,
+                }}
+            >
+                <LearnMoreBadge size={BADGE_SIZE} />
             </div>
         </section>
     );
