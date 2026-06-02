@@ -216,11 +216,6 @@ const HowItUse = ({ tab = "guest" }: Props) => {
     const activeTab = tab === "host" ? "host" : "guest";
     const activeData = activeTab === "host" ? hostData : guestData;
 
-    console.log(
-        `[HowItUse] Active tab: ${activeTab}`,
-        activeData.map((d) => d.title)
-    );
-
     return (
         <section id="how-it-works">
             {/* Header + tab pills */}

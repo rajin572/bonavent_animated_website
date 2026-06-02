@@ -66,6 +66,7 @@ const Loading = () => {
                         filter: "brightness(0) invert(1)"
                     }}
                     fetchPriority="high"
+                    sizes="(max-width: 768px) 50vw, 100vw"
                     preload
                 />
                 <p className="text-white text-xs">{percent}%</p>

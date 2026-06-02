@@ -140,6 +140,7 @@ export default function StackingCards() {
                             style={{ width: "100%", height: "100%", objectFit: "cover" }}
                             fetchPriority="high"
                             preload
+                            sizes="(max-width: 768px) 50vw, 100vw"
                         />
                     </div>
                 </div>

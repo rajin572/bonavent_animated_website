@@ -153,6 +153,7 @@ const TestimonialCard = ({
                     alt={name}
                     fill
                     className="object-cover"
+                    sizes="(max-width: 768px) 50vw, 100vw"
                     fetchPriority="high"
                     preload
                 />

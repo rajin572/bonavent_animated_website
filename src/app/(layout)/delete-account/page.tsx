@@ -108,7 +108,7 @@ const DeleteAccountPage = () => {
                                                 alt={step.title}
                                                 fill
                                                 className="object-cover object-top"
-                                                sizes="220px"
+                                                sizes="(max-width: 768px) 50vw, 100vw"
                                                 fetchPriority="high"
                                                 preload
                                             />

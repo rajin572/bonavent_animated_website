@@ -124,6 +124,7 @@ const DownloadApp = () => {
                             className="w-auto h-auto object-contain drop-shadow-xl max-w-70 sm:max-w-85 lg:max-w-100"
                             fetchPriority="high"
                             preload
+                            sizes="(max-width: 768px) 50vw, 100vw"
                         />
                     </div>
 

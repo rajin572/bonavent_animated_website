@@ -30,6 +30,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
                     }}
                     fetchPriority="high"
                     preload
+                    sizes="(max-width: 768px) 50vw, 100vw"
                 />
             </div>
             {children}

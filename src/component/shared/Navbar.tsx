@@ -227,6 +227,7 @@ const NavbarOne = () => {
                             height={1000}
                             src={AllImages?.logoText}
                             alt="Logo"
+                            sizes="(max-width: 768px) 50vw, 100vw"
                             className="w-40 lg:w-55"
                         />
                     </TransitionLink>

@@ -7,7 +7,6 @@ import { useGSAP } from "@gsap/react";
 const PageTransition = ({ children }: { children: React.ReactNode }) => {
     const currentLocation = usePathname();
 
-    console.log(currentLocation);
     const stairParentRef = useRef(null);
     const childRef = useRef(null);
 

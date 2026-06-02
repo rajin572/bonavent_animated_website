@@ -85,6 +85,7 @@ const Features = () => {
                                     className="object-contain"
                                     fetchPriority="high"
                                     preload
+                                    sizes="(max-width: 768px) 50vw, 100vw"
                                 />
                             </div>
                         </div>

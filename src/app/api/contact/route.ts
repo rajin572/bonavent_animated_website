@@ -126,7 +126,6 @@ export async function POST(request: Request) {
             message: "Thanks! Your message has been sent.",
         });
     } catch (error) {
-        console.error("[contact] send failed:", error);
         return NextResponse.json(
             {
                 ok: false,

@@ -150,7 +150,7 @@ const SectionGridCard = ({ id, cardData }: { id: number; cardData: ICardData }) 
   );
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden py-10">
+    <section ref={sectionRef} className="relative overflow-hidden py-6 md:py-10">
 
       {/* Watermark number */}
       <span
@@ -160,7 +160,7 @@ const SectionGridCard = ({ id, cardData }: { id: number; cardData: ICardData }) 
         {String(id).padStart(2, "0")}
       </span>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 lg:gap-16 items-center">
 
         {/* ── Text side ── */}
         <div className={cardData.isReverse ? "order-2 lg:order-2" : "order-2 lg:order-1"}>
@@ -171,17 +171,17 @@ const SectionGridCard = ({ id, cardData }: { id: number; cardData: ICardData }) 
             </p>
           )}
 
-          <h2 className={`sgc-title text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] ${c.title} font-bold leading-[1.05] tracking-tight mb-5`}>
+          <h2 className={`sgc-title text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] ${c.title} font-bold leading-[1.05] tracking-tight mb-3 md:mb-5`}>
             {cardData.title}
           </h2>
 
-          <p className={`sgc-desc text-sm sm:text-base lg:text-lg ${c.desc} leading-relaxed mb-6`}>
+          <p className={`sgc-desc text-sm sm:text-base lg:text-lg ${c.desc} leading-relaxed mb-4 md:mb-6`}>
             {cardData.description}
           </p>
 
           {cardData.isFeatured ? (
             cardData.featuredWithDescription ? (
-              <div className="space-y-5 mt-2">
+              <div className="space-y-3 md:space-y-5 mt-2">
                 {cardData.featuredWithDescription.map((feature, index) => (
                   <div key={index} className="sgc-feature flex items-start gap-4">
                     <div className={`sgc-icon-box ${c.iconBox} p-2.5 rounded-xl mt-0.5 shrink-0`}>

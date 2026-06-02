@@ -213,7 +213,7 @@ const Contact = () => {
                     <div className="flex flex-col gap-8">
 
                         {/* Contact info columns */}
-                        <div className="contact-info-row grid grid-cols-2 gap-6">
+                        <div className="contact-info-row grid lg:grid-cols-2 gap-6">
                             {contactInfo.map(({ label, lines }) => (
                                 <div key={label} className="contact-info-col flex flex-col gap-2">
                                     <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary-color/70">

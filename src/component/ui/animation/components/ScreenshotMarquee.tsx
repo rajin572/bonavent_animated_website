@@ -213,6 +213,7 @@ const ScreenshotMarquee = ({
                                             alt={`screenshot-${i}`}
                                             width={cardWidth}
                                             height={cardHeight}
+                                            sizes="(max-width: 768px) 50vw, 100vw"
                                             className="object-cover object-top w-full h-full"
                                             draggable={false}
                                             fetchPriority="high"

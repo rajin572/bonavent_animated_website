@@ -96,12 +96,6 @@ const Hero = () => {
                     duration: 0.65,
                     ease: "back.out(1.6)",
                 }, 0.7)
-                .from(".hero-corner-text", {
-                    y: 12,
-                    opacity: 0,
-                    duration: 0.5,
-                    ease: "power2.out",
-                }, 0.85)
 
                 /* Badge */
                 .from(".hero-learn-badge", {
@@ -183,6 +177,7 @@ const Hero = () => {
                             height={1400}
                             fetchPriority="high"
                             preload
+                            sizes="(max-width: 768px) 50vw, 100vw"
                         />
                     </div>
                 </div>
@@ -261,9 +256,9 @@ const LearnMoreBadge = ({ size }: { size: number }) => {
                     <Image
                         src={AllImages.logo}
                         alt="Bonavent"
-                        width={32}
-                        height={32}
-                        className="w-full h-full object-contain"
+                        width={100}
+                        height={100}
+                        className="w-full h-auto max-w-15 object-contain"
                         fetchPriority="high"
                         preload
                     />
