@@ -238,7 +238,7 @@ const NavbarOne = () => {
                         style={{ clipPath }}
                     >
                         <DownloadModal>
-                            <BorderCard className="!rounded-full">
+                            <BorderCard className="rounded-full!">
                                 <span
                                     className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/80 backdrop-blur-sm text-sm font-medium text-[#111] hover:bg-white transition cursor-pointer"
                                 >
@@ -248,7 +248,7 @@ const NavbarOne = () => {
                             </BorderCard>
                         </DownloadModal>
                         <DownloadModal>
-                            <BorderCard className="!rounded-full">
+                            <BorderCard className="rounded-full!">
                                 <span
                                     className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/80 backdrop-blur-sm text-sm font-medium text-[#111] hover:bg-white transition cursor-pointer"
                                 >
