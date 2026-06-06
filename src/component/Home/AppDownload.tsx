@@ -10,11 +10,15 @@ import {
     FaShield,
     FaHeadset,
     FaStar,
+    FaLaptop,
 } from "react-icons/fa6";
+import { BsArrowUpRight } from "react-icons/bs";
 import { useGSAP, gsap } from "@/lib/gsap-util";
 import { ReactQRCode } from "@lglab/react-qr-code";
 import { BiLogoPlayStore } from "react-icons/bi";
 import DownloadModal from "../ui/DownloadModal";
+
+const HOST_DASHBOARD_URL = "https://host.bonaventpr.com/sign-in";
 
 const features = [
     { Icon: FaCar, text: "Browse 500+ verified cars near you" },
@@ -28,7 +32,18 @@ const stats = [
     { value: "50K+", label: "Downloads" },
 ];
 
-export const AppDownload = () => {
+const tabConfig = [
+    { label: "For Guests", value: "guest", content: null },
+    { label: "For Hosts", value: "host", content: null },
+];
+
+interface Props {
+    tab?: string;
+}
+export const AppDownload = ({ tab = "guest" }: Props) => {
+
+    const activeTab = tab === "host" ? "host" : "guest";
+
     const containerRef = useRef<HTMLDivElement>(null);
     const iosCardRef = useRef<HTMLDivElement>(null);
     const androidCardRef = useRef<HTMLDivElement>(null);
@@ -190,6 +205,43 @@ export const AppDownload = () => {
                                 <BiLogoPlayStore className="text-5xl text-secondary-color" />
                             </div>
                         </div>
+
+                        {/* Host Dashboard — web app, only for hosts */}
+                        {activeTab === "host" && (
+                            <div className="md:col-span-2 bg-white rounded-3xl p-6 shadow-sm relative overflow-hidden border border-gray-100 flex flex-col sm:flex-row sm:items-center gap-6">
+                                <div className="qr-code w-25 h-25 bg-gray-50 rounded-xl flex items-center justify-center border border-gray-200 p-1.5 shrink-0">
+                                    <ReactQRCode value={HOST_DASHBOARD_URL} />
+                                </div>
+
+                                <div className="flex flex-col gap-3 sm:pr-20">
+                                    <h3 className="text-xl font-bold text-base-color">Host Dashboard</h3>
+                                    <p className="text-sm text-base-color/70 max-w-md leading-relaxed">
+                                        Manage your fleet, bookings, and earnings from any browser.
+                                        Scan the code or open the link to sign in.
+                                    </p>
+
+                                    <BorderCard className="rounded-full w-fit">
+                                        <a
+                                            href={HOST_DASHBOARD_URL}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-secondary-color text-white font-semibold text-sm hover:brightness-110 transition"
+                                        >
+                                            <FaLaptop />
+                                            Open Dashboard
+                                            <BsArrowUpRight className="size-3.5" />
+                                        </a>
+                                    </BorderCard>
+
+
+                                </div>
+
+                                {/* Floating icon */}
+                                <div className="platform-icon absolute -bottom-3 -right-3 p-5 bg-secondary-color/10 rounded-full flex items-center justify-center border border-secondary-color/10">
+                                    <FaLaptop className="text-5xl text-secondary-color" />
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                 </div>

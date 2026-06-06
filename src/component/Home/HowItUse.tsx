@@ -19,7 +19,6 @@ import { AllImages } from "../../../public/assests/images/AllImages";
 import type { ICardData } from "../ui/SectionGridCard";
 import SectionGridCard from "../ui/SectionGridCard";
 import StackingGridCards from "../ui/StackingGridCards";
-import ReusableTabs from "../ui/ReusableTabs";
 import SectionHeader from "../ui/SectionHeader";
 import Container from "../ui/Container";
 
@@ -203,11 +202,6 @@ export const hostData: ICardData[] = [
     },
 ];
 
-const tabConfig = [
-    { label: "For Guests", value: "guest", content: null },
-    { label: "For Hosts", value: "host", content: null },
-];
-
 interface Props {
     tab?: string;
 }
@@ -219,7 +213,7 @@ const HowItUse = ({ tab = "guest" }: Props) => {
     return (
         <section id="how-it-works">
             {/* Header + tab pills */}
-            <div className="pt-16 lg:pt-20 pb-10">
+            <div className="pt-16 lg:pt-20">
                 <Container>
                     <SectionHeader
                         label="How It Works"
@@ -227,26 +221,19 @@ const HowItUse = ({ tab = "guest" }: Props) => {
                         headingMain="Big Experience."
                         description="Whether you're renting a car or listing your own — Bonavent makes every step fast, safe, and straightforward."
                     />
-                    <div className="mt-12">
-                        <Suspense fallback={null}>
-                            <ReusableTabs
-                                tabs={tabConfig}
-                                activeTab={activeTab as "guest" | "host"}
-                                tabName="tab"
-                                align="center"
-                                tabContentStyle="hidden mt-0"
-                            />
-                        </Suspense>
-                    </div>
+                    {/* <div className="mt-12">
+                    </div> */}
                 </Container>
             </div>
 
             {/* Stacking cards — outside Container so they can pin full-width */}
-            <StackingGridCards>
-                {activeData.map((card) => (
-                    <SectionGridCard key={card.id} id={card.id} cardData={card} />
-                ))}
-            </StackingGridCards>
+            <div className="-mt-10">
+                <StackingGridCards>
+                    {activeData.map((card) => (
+                        <SectionGridCard key={card.id} id={card.id} cardData={card} />
+                    ))}
+                </StackingGridCards>
+            </div>
         </section>
     );
 };

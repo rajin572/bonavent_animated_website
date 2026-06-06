@@ -20,10 +20,10 @@ const page = async ({
 
   return (
     <div>
-      <Hero />
+      <Hero tab={tab} />
       <Brands />
       <Services />
-      <AppDownload />
+      <AppDownload tab={tab} />
       <HowItUse tab={tab} />
       <Features />
       <ThreeSteps />

@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AllImages } from "../../../public/assests/images/AllImages";
-import { BsArrowDown, BsArrowUpRight } from "react-icons/bs";
+import { BsArrowUpRight } from "react-icons/bs";
 import { FaApple, FaStar } from "react-icons/fa6";
 import { IoLogoGooglePlaystore } from "react-icons/io5";
 import BorderCard from "../ui/BorderCard";
 import DownloadModal from "../ui/DownloadModal";
 import { gsap, useGSAP, SplitText } from "@/lib/gsap-util";
+import ReusableTabs from "../ui/ReusableTabs";
 
 const PAGE_BG = "#f4f4f4";
 const HERO_ACCENT = "#6078ea";
@@ -19,7 +20,20 @@ const BADGE_SIZE = 132;
 const LEFT_CLIP = `shape(from 5% 0%,hline to 95%,arc to 100% 5% of 5% 5% cw small rotate 0deg,vline to 81%,arc to 96% 85% of 4% 4% cw small rotate 0deg,hline to 92%,arc to 88% 89% of 4% 4% ccw small rotate 0deg,vline to 96%,arc to 84% 100% of 4% 4% cw small rotate 0deg,hline to 5%,arc to 0% 95% of 5% 5% cw small rotate 0deg,vline to 5%,arc to 5% 0% of 5% 5% cw small rotate 0deg,close)`;
 const RIGHT_CLIP = `shape(from 5% 0%,hline to 95%,arc to 100% 5% of 5% 5% cw small rotate 0deg,vline to 95%,arc to 95% 100% of 5% 5% cw small rotate 0deg,hline to 16%,arc to 12% 96% of 4% 4% cw small rotate 0deg,vline to 89%,arc to 8% 85% of 4% 4% ccw small rotate 0deg,hline to 4%,arc to 0% 81% of 4% 4% cw small rotate 0deg,vline to 5%,arc to 5% 0% of 5% 5% cw small rotate 0deg,close)`;
 
-const Hero = () => {
+
+const tabConfig = [
+    { label: "For Guests", value: "guest", content: null },
+    { label: "For Hosts", value: "host", content: null },
+];
+
+interface Props {
+    tab?: string;
+}
+
+const Hero = ({ tab = "guest" }: Props) => {
+
+    const activeTab = tab === "host" ? "host" : "guest";
+
     const sectionRef = useRef<HTMLElement>(null);
     const [isDesktop, setIsDesktop] = useState(false);
 
@@ -125,6 +139,17 @@ const Hero = () => {
                         style={{ clipPath: isDesktop ? LEFT_CLIP : undefined }}
                     >
                         <div className="flex flex-col gap-7 md:gap-9 lg:gap-10">
+                            <div className="mr-auto">
+                                <Suspense fallback={null}>
+                                    <ReusableTabs
+                                        tabs={tabConfig}
+                                        activeTab={activeTab as "guest" | "host"}
+                                        tabName="tab"
+                                        align="center"
+                                        tabContentStyle="hidden mt-0"
+                                    />
+                                </Suspense>
+                            </div>
                             <p className="hero-eyebrow text-[11px] sm:text-xs uppercase tracking-[0.18em] text-[#111]/65 leading-[1.7] font-medium">
                                 Book Cars · Hire Drivers · Earn as a Host
                             </p>
@@ -168,7 +193,6 @@ const Hero = () => {
                         <div className="absolute top-5 left-5 md:top-7 md:left-7 z-10">
                             <PortfolioPill />
                         </div>
-
                         <Image
                             src={AllImages.bannerMockup}
                             alt="Bonavent app mockup"
