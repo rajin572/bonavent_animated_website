@@ -6,11 +6,11 @@ import { useGSAP, gsap, ScrollTrigger } from "@/lib/gsap-util";
 import TransitionLink from "@/utility/TransitionLink";
 
 const NAV_LINKS = [
-    { label: "Services", href: "#services" },
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Features", href: "#features" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Contact", href: "#contact" },
+    { label: "Services", href: "/services" },
+    { label: "How It Works", href: "/how-it-works" },
+    { label: "Features", href: "/features" },
+    { label: "FAQ", href: "/faq" },
+    { label: "Contact", href: "/contact" },
 ] as const;
 
 const SOCIAL_LINKS = [
