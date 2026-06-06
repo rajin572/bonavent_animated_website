@@ -16,11 +16,12 @@ import TransitionLink from "@/utility/TransitionLink";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const NAV_ITEMS = [
-    { label: "Services", href: "#services" },
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Features", href: "#features" },
-    { label: "Download", href: "#app-download" },
-    { label: "Contact", href: "#contact" },
+    { label: "Services", href: "/services" },
+    { label: "How It Works", href: "/how-it-works" },
+    { label: "Features", href: "/features" },
+    { label: "Download", href: "/download" },
+    { label: "Contact", href: "/contact" },
+    { label: "FAQ", href: "/faq" },
 ] as const;
 
 const socials = [
@@ -169,14 +170,14 @@ const NavbarOne = () => {
                             ref={(el) => {
                                 linksRef.current[index] = el;
                             }}
+                            onClick={closeMenu}
                         >
-                            <Link
+                            <TransitionLink
                                 href={href}
-                                onClick={closeMenu}
                                 className="transition-all duration-700 cursor-pointer hover:text-white hover:tracking-[0.5rem] ease-in-out"
                             >
                                 {label}
-                            </Link>
+                            </TransitionLink>
                         </div>
                     ))}
                 </div>

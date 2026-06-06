@@ -1,3 +1,17 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms & Conditions",
+  description: "Review Bonavent's Terms and Conditions — the rules and agreements that govern the use of our car rental platform.",
+  alternates: { canonical: "https://www.bonaventpr.com/terms-and-conditions" },
+  robots: { index: true, follow: false },
+  openGraph: {
+    title: "Terms & Conditions | Bonavent",
+    description: "The legal agreement that governs your use of the Bonavent platform.",
+    url: "https://www.bonaventpr.com/terms-and-conditions",
+  },
+};
+
 import { FiFileText } from "react-icons/fi";
 
 const LAST_UPDATED = "February 24, 2026";

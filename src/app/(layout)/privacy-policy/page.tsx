@@ -1,3 +1,17 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Read Bonavent's Privacy Policy to understand how we collect, store, use, and protect your personal information.",
+  alternates: { canonical: "https://www.bonaventpr.com/privacy-policy" },
+  robots: { index: true, follow: false },
+  openGraph: {
+    title: "Privacy Policy | Bonavent",
+    description: "Understand how Bonavent handles your personal data and privacy.",
+    url: "https://www.bonaventpr.com/privacy-policy",
+  },
+};
+
 import { FiShield } from "react-icons/fi";
 
 const LAST_UPDATED = "February 24, 2026";

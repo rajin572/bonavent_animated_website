@@ -1,3 +1,17 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Bonavent — Car Rental App | Rent Cars & Hire Drivers in Puerto Rico",
+  description:
+    "Bonavent is Puerto Rico's #1 car rental app. Browse 500+ verified cars near you, book instantly, hire professional drivers, or earn passive income by listing your vehicle.",
+  alternates: { canonical: "https://www.bonaventpr.com" },
+  openGraph: {
+    title: "Bonavent — Car Rental App | Rent Cars & Hire Drivers in Puerto Rico",
+    description: "Browse 500+ verified cars, book instantly, or earn as a host. Download the Bonavent app today.",
+    url: "https://www.bonaventpr.com",
+  },
+};
+
 import AppDownload from "@/component/Home/AppDownload";
 import DownloadApp from "@/component/Home/DownloadApp";
 import Brands from "@/component/Home/Brands";

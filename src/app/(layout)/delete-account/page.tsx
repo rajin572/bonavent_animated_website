@@ -1,3 +1,17 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Delete Your Account",
+  description: "Step-by-step guide to permanently deleting your Bonavent account and all associated data from the app.",
+  alternates: { canonical: "https://www.bonaventpr.com/delete-account" },
+  robots: { index: true, follow: false },
+  openGraph: {
+    title: "Delete Your Account | Bonavent",
+    description: "Follow these steps to permanently delete your Bonavent account.",
+    url: "https://www.bonaventpr.com/delete-account",
+  },
+};
+
 import Image from "next/image";
 import { AllImages } from "../../../../public/assests/images/AllImages";
 import { IoWarningOutline } from "react-icons/io5";
