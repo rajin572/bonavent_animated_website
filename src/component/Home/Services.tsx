@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap-util";
 import SectionHeader from "../ui/SectionHeader";
+import BorderCard from "../ui/BorderCard";
 import { cn } from "@/lib/utils";
 import {
     FaCar,
@@ -11,88 +12,277 @@ import {
     FaStar,
     FaApple,
 } from "react-icons/fa6";
-import { BsArrowUpRight } from "react-icons/bs";
+import { IoLogoGooglePlaystore } from "react-icons/io5";
+import { BsArrowUpRight, BsArrowRight, BsArrowLeft } from "react-icons/bs";
 import Container from "../ui/Container";
+import DownloadModal from "../ui/DownloadModal";
 
-interface ServiceItem {
-    icon: React.ReactNode;
-    title: string;
-    description: string;
-    badge?: string;
-    highlight?: boolean;
-}
+/* ── Service-scoped wrapper adds GSAP target + cursor ─────── */
+const SCard = ({
+    children,
+    className,
+}: {
+    children: React.ReactNode;
+    className?: string;
+}) => (
+    <BorderCard className={cn("service-card cursor-default", className)}>
+        {children}
+    </BorderCard>
+);
 
-const services: ServiceItem[] = [
-    {
-        icon: <FaCar />,
-        title: "Book Your Next Ride Today!",
-        description: "Browse hundreds of verified cars near you and book instantly — any time, anywhere.",
-        badge: "Popular",
-        // highlight: true,
-    },
-    {
-        icon: <FaStar />,
-        title: "500+ Cars Available",
-        description: "Choose from a wide selection of vehicles across 50+ cities. Rental made easy for everyone.",
-    },
-    {
-        icon: <FaUserTie />,
-        title: "Book a Driver — Ride in Comfort",
-        description: "Need a professional driver? We've got you covered. Ride in comfort and style.",
-        badge: "Pro Driver",
-    },
-    {
-        icon: <FaCoins />,
-        title: "Host & Earn — $400+ / Month Avg.",
-        description: "List your car on Bonavent and start earning passive income. #HostWithBonavent",
-        badge: "Host & Earn",
-    },
-    {
-        icon: <FaArrowRotateLeft />,
-        title: "Return with Ease — Flexible Drop-off",
-        description: "Drop off anywhere, anytime. No stress, no delays. Fully flexible returns.",
-    },
-    // {
-    //     icon: <FaApple />,
-    //     title: "Get the Bonavent App",
-    //     description: "Download on the App Store or Google Play Store and start your journey today.",
-    //     badge: "↓ Get the App",
-    // },
-];
+/* ── Shared inner-card base classes ───────────────────────── */
+const inner =
+    "h-full rounded-[14px] bg-white transition-all duration-500 overflow-hidden " +
+    "group-hover:bg-secondary-color group-hover:shadow-2xl group-hover:shadow-secondary-color/25";
 
+/* ══════════════════════════════════════════════════════════════
+   Bento cards
+══════════════════════════════════════════════════════════════ */
+
+/** Col 1 · Top — CTA card with icon */
+const CTACard = () => (
+    <SCard>
+        <div className={cn(inner, "min-h-56 p-7 flex flex-col justify-between")}>
+            {/* Top row: icon left, arrow right */}
+            <div className="flex items-start justify-between">
+                <div
+                    className="w-12 h-12 rounded-2xl bg-highlight-color flex items-center justify-center
+                               transition-all duration-500 group-hover:bg-white/20 group-hover:scale-110"
+                >
+                    <FaCar className="text-xl text-secondary-color transition-colors duration-500 group-hover:text-white" />
+                </div>
+                <div
+                    className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center
+                               transition-colors duration-500 group-hover:border-white/30"
+                >
+                    <BsArrowUpRight className="text-base-color transition-colors duration-500 group-hover:text-white" />
+                </div>
+            </div>
+
+            {/* Headline */}
+            <p className="text-2xl font-bold leading-snug text-base-color transition-colors duration-500 group-hover:text-white">
+                — Book Your{" "}
+                <span
+                    className="bg-highlight-color px-1.5 rounded transition-colors duration-500
+                               group-hover:bg-white/20"
+                >
+                    Next Ride
+                </span>{" "}
+                Today!
+            </p>
+        </div>
+    </SCard>
+);
+
+/** Col 1 · Bottom — Stats card */
+const StatsCard = () => (
+    <SCard>
+        <div className={cn(inner, "p-6 flex flex-col gap-4")}>
+            <div className="flex items-center gap-3">
+                <FaStar className="text-secondary-color transition-colors duration-500 group-hover:text-white" />
+                <span className="font-bold text-base-color transition-colors duration-500 group-hover:text-white">
+                    500+ Cars
+                </span>
+                <BsArrowRight className="text-lighter-color ml-auto transition-colors duration-500 group-hover:text-white/60" />
+            </div>
+            <p className="text-sm text-lighter-color transition-colors duration-500 group-hover:text-white/75">
+                Rental Made Easy For Everyone
+            </p>
+            <div className="h-2 rounded-full bg-secondary-color/15 transition-colors duration-500 group-hover:bg-white/20" />
+        </div>
+    </SCard>
+);
+
+/** Col 2 · Top — Big stat card */
+const StatBigCard = () => (
+    <SCard>
+        <div className={cn(inner, "min-h-60 p-7 flex flex-col justify-between")}>
+            <div className="space-y-3">
+                <p className="text-6xl font-black text-base-color leading-none transition-colors duration-500 group-hover:text-white">
+                    ↑ 500+
+                </p>
+                <p className="text-xl font-semibold leading-snug text-base-color/80 transition-colors duration-500 group-hover:text-white/90">
+                    Cars Available<br />— Across 50+ Cities
+                </p>
+                <p className="text-sm text-lighter-color transition-colors duration-500 group-hover:text-white/70">
+                    Find and book verified cars near you — instantly, any time.
+                </p>
+            </div>
+        </div>
+    </SCard>
+);
+
+/** Col 2 · Bottom — Driver card */
+const DriverCard = () => (
+    <SCard>
+        <div className={cn(inner, "p-7 flex flex-col gap-5")}>
+            <div className="flex items-center gap-3">
+                <div
+                    className="w-10 h-10 rounded-xl bg-highlight-color flex items-center justify-center
+                               transition-colors duration-500 group-hover:bg-white/20"
+                >
+                    <FaUserTie className="text-secondary-color transition-colors duration-500 group-hover:text-white" />
+                </div>
+                <span
+                    className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-lighter-color
+                               transition-colors duration-500 group-hover:text-white/60"
+                >
+                    Pro.Driver
+                </span>
+            </div>
+            <h3 className="text-2xl font-bold leading-snug text-base-color transition-colors duration-500 group-hover:text-white">
+                Book a Driver —<br />Ride in Comfort
+            </h3>
+        </div>
+    </SCard>
+);
+
+/** Col 3 · Top — Trust badge (permanently secondary) */
+const TrustCard = () => (
+    <SCard>
+        <div
+            className="h-full min-h-36 rounded-[14px] bg-secondary-color overflow-hidden
+                       p-6 flex flex-col gap-3 transition-all duration-500
+                       group-hover:brightness-110 group-hover:shadow-2xl group-hover:shadow-secondary-color/40"
+        >
+            <div className="flex items-center gap-2">
+                <FaCar className="text-white/60 text-sm" />
+                <span className="text-[10px] font-bold tracking-widest uppercase text-white/60">
+                    Bonavent ✓
+                </span>
+            </div>
+            <p className="text-lg font-bold text-white leading-snug">
+                &ldquo;Drive with comfort<br />— Every time.&rdquo;
+            </p>
+        </div>
+    </SCard>
+);
+
+/** Col 3 · Bottom — Host & Earn card */
+const HostCard = () => (
+    <SCard>
+        <div className={cn(inner, "min-h-64 p-7 flex flex-col justify-between")}>
+            <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                    <FaCoins className="text-secondary-color transition-colors duration-500 group-hover:text-white" />
+                    <span
+                        className="text-[10px] font-bold tracking-widest uppercase text-lighter-color
+                                   transition-colors duration-500 group-hover:text-white/60"
+                    >
+                        Host &amp; Earn
+                    </span>
+                </div>
+                <BsArrowLeft className="text-base-color transition-colors duration-500 group-hover:text-white/60" />
+            </div>
+
+            <div
+                className="my-3 rounded-xl bg-highlight-color/60 p-4 transition-colors duration-500
+                           group-hover:bg-white/15"
+            >
+                <p className="text-xs text-lighter-color transition-colors duration-500 group-hover:text-white/60">
+                    Monthly avg. earnings
+                </p>
+                <p className="text-4xl font-black text-base-color transition-colors duration-500 group-hover:text-white">
+                    $400+
+                </p>
+            </div>
+
+            <p className="text-sm font-bold text-lighter-color transition-colors duration-500 group-hover:text-white/70">
+                #HostWithBonavent
+            </p>
+        </div>
+    </SCard>
+);
+
+/** Col 4 · Top — Easy Returns card */
+const ReturnsCard = () => (
+    <SCard>
+        <div className={cn(inner, "p-7 flex flex-col gap-5")}>
+            <div
+                className="w-10 h-10 rounded-xl bg-highlight-color flex items-center justify-center
+                           transition-colors duration-500 group-hover:bg-white/20"
+            >
+                <FaArrowRotateLeft className="text-secondary-color transition-colors duration-500 group-hover:text-white" />
+            </div>
+            <h3 className="text-2xl font-bold leading-snug text-base-color transition-colors duration-500 group-hover:text-white">
+                Return with Ease —<br />Flexible Drop-off
+            </h3>
+            <p className="text-sm text-lighter-color transition-colors duration-500 group-hover:text-white/75">
+                Drop off anywhere, anytime. No stress, no delays.
+            </p>
+        </div>
+    </SCard>
+);
+
+/** Col 4 · Bottom — App download card */
+const AppCard = () => (
+    <SCard>
+        <div className={cn(inner, "min-h-48 p-7 flex flex-col justify-between")}>
+            <p
+                className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-lighter-color
+                           transition-colors duration-500 group-hover:text-white/60"
+            >
+                ↓ Get the App
+            </p>
+            <div className="flex flex-col gap-2.5">
+                <DownloadModal>
+                    <div
+                        className="flex items-center gap-3 px-4 py-3 rounded-xl bg-highlight-color/50
+                                   transition-colors duration-500 group-hover:bg-white/15 cursor-pointer"
+                    >
+                        <FaApple className="text-secondary-color text-lg transition-colors duration-500 group-hover:text-white" />
+                        <span className="text-sm font-semibold text-base-color transition-colors duration-500 group-hover:text-white">
+                            App Store
+                        </span>
+                    </div>
+                </DownloadModal>
+                <DownloadModal>
+                    <div
+                        className="flex items-center gap-3 px-4 py-3 rounded-xl bg-highlight-color/50
+                                   transition-colors duration-500 group-hover:bg-white/15 cursor-pointer"
+                    >
+                        <IoLogoGooglePlaystore className="text-secondary-color text-lg transition-colors duration-500 group-hover:text-white" />
+                        <span className="text-sm font-semibold text-base-color transition-colors duration-500 group-hover:text-white">
+                            Play Store
+                        </span>
+                    </div>
+                </DownloadModal>
+            </div>
+        </div>
+    </SCard>
+);
+
+/* ══════════════════════════════════════════════════════════════
+   Section
+══════════════════════════════════════════════════════════════ */
 const Services = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
 
     useGSAP(
         () => {
-            gsap.fromTo(
-                ".service-item",
-                { y: 28, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 0.6,
-                    ease: "power3.out",
-                    stagger: { amount: 0.5, from: "start" },
-                    scrollTrigger: {
-                        trigger: ".services-list",
-                        start: "top 85%",
-                        toggleActions: "play none none none",
-                        once: true,
-                    },
-                }
-            );
+            gsap.from(".service-card", {
+                y: 70,
+                opacity: 0,
+                scale: 0.93,
+                duration: 0.75,
+                ease: "power3.out",
+                stagger: {
+                    amount: 0.4,
+                    from: "start",
+                },
+                scrollTrigger: {
+                    trigger: ".services-grid",
+                    start: "top 85%",
+                    toggleActions: "play none none reverse",
+                },
+            });
         },
         { scope: sectionRef }
     );
 
     return (
-        <section id="services" ref={sectionRef} className="py-16 lg:py-20 overflow-hidden relative">
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-highlight-color/10 blur-3xl" />
-                <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-secondary-color/5 blur-3xl" />
-            </div>
 
+        <section id="services" ref={sectionRef} className="py-16 lg:py-20 overflow-hidden">
             <Container>
                 <SectionHeader
                     label="What we offer"
@@ -101,91 +291,33 @@ const Services = () => {
                     description="Browse, book, and drive — or earn by listing your car. Everything in one app."
                 />
 
-                {/* List card */}
-                <div className="mt-10 bg-white rounded-lg overflow-hidden">
+                {/* Bento grid — 4 independent columns */}
+                <div className="services-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 items-start">
 
-                    {/* Card header bar */}
-                    <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-                        <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-secondary-color">
-                            All Services
-                        </span>
-                        {/* <span className="text-[11px] font-semibold text-secondary-color/50">
-                            {services.length} available
-                        </span> */}
+                    {/* ── Column 1 ── */}
+                    <div className="flex flex-col gap-5">
+                        <CTACard />
+                        <StatsCard />
                     </div>
 
-                    {/* List */}
-                    <ul className="services-list divide-y divide-gray-100">
-                        {services.map((item, idx) => (
-                            <li
-                                key={idx}
-                                className={cn(
-                                    "service-item group relative flex items-center gap-5 px-6 py-5 transition-all duration-300 cursor-default",
-                                    item.highlight
-                                        ? "hover:bg-secondary-color/3"
-                                        : "hover:bg-white"
-                                )}
-                            >
-                                {/* Left accent bar */}
-                                <span className={cn(
-                                    "absolute left-0 top-3 bottom-3 w-0.75 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100",
-                                    item.highlight ? "bg-highlight-color" : "bg-secondary-color/30"
-                                )} />
+                    {/* ── Column 2 ── */}
+                    <div className="flex flex-col gap-5">
+                        <StatBigCard />
+                        <DriverCard />
+                    </div>
 
-                                {/* Number */}
-                                <span className="hidden sm:block text-[11px] font-black text-gray-200 w-6 shrink-0 text-right select-none group-hover:text-gray-300 transition-colors duration-300">
-                                    {String(idx + 1).padStart(2, "0")}
-                                </span>
+                    {/* ── Column 3 ── */}
+                    <div className="flex flex-col gap-5">
+                        <TrustCard />
+                        <HostCard />
+                    </div>
 
-                                {/* Icon */}
-                                <div className={cn(
-                                    "w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-105",
-                                    item.highlight
-                                        ? "bg-highlight-color/20 group-hover:bg-highlight-color/30"
-                                        : "bg-gray-100 group-hover:bg-secondary-color/10"
-                                )}>
-                                    <span className={cn(
-                                        "text-base transition-colors duration-300",
-                                        item.highlight ? "text-secondary-color" : "text-secondary-color/60 group-hover:text-secondary-color"
-                                    )}>
-                                        {item.icon}
-                                    </span>
-                                </div>
+                    {/* ── Column 4 ── */}
+                    <div className="flex flex-col gap-5">
+                        <ReturnsCard />
+                        <AppCard />
+                    </div>
 
-                                {/* Text */}
-                                <div className="flex-1 min-w-0">
-                                    <p className={cn(
-                                        "font-semibold text-lg text-base-color transition-colors duration-300",
-                                        item.highlight
-                                            ? "group-hover:text-secondary-color"
-                                            : "group-hover:text-secondary-color"
-                                    )}>
-                                        {item.title}
-                                    </p>
-                                    <p className="text-sm text-gray-400 mt-0.5 leading-relaxed truncate">
-                                        {item.description}
-                                    </p>
-                                </div>
-
-                                {/* Badge */}
-                                {item.badge && (
-                                    <span className={cn(
-                                        "hidden md:inline-flex shrink-0 text-[9px] font-extrabold tracking-[0.2em] uppercase px-2.5 py-1 rounded-full transition-all duration-300",
-                                        item.highlight
-                                            ? "bg-highlight-color/20 text-secondary-color group-hover:bg-highlight-color/30"
-                                            : "bg-gray-100 text-gray-400 group-hover:bg-secondary-color/10 group-hover:text-secondary-color"
-                                    )}>
-                                        {item.badge}
-                                    </span>
-                                )}
-
-                                {/* Arrow */}
-                                {/* <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 opacity-0 group-hover:opacity-100 translate-x-1 group-hover:translate-x-0 bg-secondary-color/8">
-                                    <BsArrowUpRight className="text-xs text-secondary-color" />
-                                </div> */}
-                            </li>
-                        ))}
-                    </ul>
                 </div>
             </Container>
         </section>
