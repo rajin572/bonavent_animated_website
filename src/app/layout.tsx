@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import LenisSmoothScroll from "@/component/ui/LenisSmoothScroll";
 import { cn } from "@/lib/utils";
+import LenisSmoothScroll from "@/components/ui/CustomeUi/LenisSmoothScroll";
 
 export const eurostile = localFont({
   src: [
@@ -71,12 +71,12 @@ export const eurostile = localFont({
   display: "swap",
 });
 
-const BASE_URL = "https://www.bonaventpr.com";
+const BASE_URL = "https://car-rental-landing.vercel.app/";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Bonavent — Car Rental App | Rent Cars & Hire Drivers in Puerto Rico",
+    default: "Car Rental | Rent Cars & Hire Drivers in Puerto Rico",
     template: "%s | Bonavent",
   },
   description:
@@ -103,14 +103,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: BASE_URL,
     siteName: "Bonavent",
-    title: "Bonavent — Car Rental App | Rent Cars & Hire Drivers in Puerto Rico",
+    title: "Car Rental | Rent Cars & Hire Drivers in Puerto Rico",
     description:
       "Bonavent is Puerto Rico's #1 car rental app. Browse 500+ verified cars, book instantly, hire professional drivers, or earn by listing your car.",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Bonavent Car Rental App" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bonavent — Car Rental App",
+    title: "Car Rental",
     description: "Browse cars, hire drivers, or earn as a host in Puerto Rico.",
     images: ["/og-image.png"],
   },

@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "How It Works",
-  description: "Learn how Bonavent works in 3 simple steps — download the app, browse & book a car, then pick up and drive. It's that easy.",
-  alternates: { canonical: "https://www.bonaventpr.com/how-it-works" },
-  openGraph: {
-    title: "How It Works | Bonavent",
-    description: "From download to driving in 3 steps. See how easy it is to rent a car or earn as a host with Bonavent.",
-    url: "https://www.bonaventpr.com/how-it-works",
-  },
+    title: "How It Works",
+    description: "Learn how Bonavent works in 3 simple steps — download the app, browse & book a car, then pick up and drive. It's that easy.",
+    alternates: { canonical: "https://car-rental-landing.vercel.app/how-it-works" },
+    openGraph: {
+        title: "How It Works | Bonavent",
+        description: "From download to driving in 3 steps. See how easy it is to rent a car or earn as a host with Bonavent.",
+        url: "https://car-rental-landing.vercel.app/how-it-works",
+    },
 };
 
-import HowItUse from "@/component/Home/HowItUse";
-import ReusableTabs from "@/component/ui/ReusableTabs";
+import HowItUse from "@/components/Home/HowItUse";
 import { Suspense } from "react";
+import ReusableTabs from "@/components/ui/CustomeUi/ReusableTabs";
 
 const tabConfig = [
     { label: "For Guests", value: "guest", content: null },

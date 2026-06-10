@@ -1,13 +1,6 @@
 import nodemailer from "nodemailer";
 import type { Transporter } from "nodemailer";
 
-/**
- * Singleton SMTP transporter.
- *
- * Next.js hot-reloads modules in dev, which would otherwise spin up a fresh
- * connection pool on every change. Caching on `globalThis` keeps a single
- * pooled transporter alive across reloads (and across serverless warm starts).
- */
 const globalForMailer = globalThis as unknown as {
     mailer?: Transporter;
 };

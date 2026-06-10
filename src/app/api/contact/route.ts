@@ -45,7 +45,6 @@ function validate(body: unknown): { data?: ContactPayload; errors?: Errors } {
     };
 }
 
-/** Read the brand logo once and reuse it across requests as an inline attachment. */
 let logoBufferPromise: Promise<Buffer> | null = null;
 function loadLogo(): Promise<Buffer> {
     if (!logoBufferPromise) {
@@ -95,7 +94,6 @@ export async function POST(request: Request) {
         const admin = buildAdminEmail(data);
         const reply = buildAutoReplyEmail(data);
 
-        // Notify the team. Setting replyTo lets a one-click reply reach the sender.
         await transporter.sendMail({
             from: mailConfig.from,
             to: mailConfig.to,
@@ -106,8 +104,6 @@ export async function POST(request: Request) {
             attachments,
         });
 
-        // Confirmation to the person who wrote in. Don't fail the request if
-        // this secondary message bounces — the team has already been notified.
         try {
             await transporter.sendMail({
                 from: mailConfig.from,

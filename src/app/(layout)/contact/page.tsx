@@ -3,15 +3,15 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
     title: "Contact Us",
     description: "Get in touch with the Bonavent team. We're here to help with bookings, hosting questions, and support.",
-    alternates: { canonical: "https://www.bonaventpr.com/contact" },
+    alternates: { canonical: "https://car-rental-landing.vercel.app/contact" },
     openGraph: {
         title: "Contact Us | Bonavent",
         description: "Reach out to the Bonavent team for support, questions, or partnership inquiries.",
-        url: "https://www.bonaventpr.com/contact",
+        url: "https://car-rental-landing.vercel.app/contact",
     },
 };
 
-import Contact from "@/component/Home/Contact";
+import Contact from "@/components/Home/Contact";
 
 const ContactPage = () => {
     return <div className="min-h-screen pt-16">

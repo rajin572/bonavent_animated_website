@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Download the App",
-  description: "Download the Bonavent app on iOS and Android. Book cars, hire drivers, or start earning as a host — all from your smartphone.",
-  alternates: { canonical: "https://www.bonaventpr.com/download" },
-  openGraph: {
-    title: "Download the Bonavent App | iOS & Android",
-    description: "Get the Bonavent app on the App Store or Google Play. Instant booking, real-time tracking, zero hassle.",
-    url: "https://www.bonaventpr.com/download",
-  },
+    title: "Download the App",
+    description: "Download the Bonavent app on iOS and Android. Book cars, hire drivers, or start earning as a host — all from your smartphone.",
+    alternates: { canonical: "https://car-rental-landing.vercel.app/download" },
+    openGraph: {
+        title: "Download the Bonavent App | iOS & Android",
+        description: "Get the Bonavent app on the App Store or Google Play. Instant booking, real-time tracking, zero hassle.",
+        url: "https://car-rental-landing.vercel.app/download",
+    },
 };
 
-import AppDownload from "@/component/Home/AppDownload";
-import DownloadApp from "@/component/Home/DownloadApp";
-import ReusableTabs from "@/component/ui/ReusableTabs";
+import AppDownload from "@/components/Home/AppDownload";
+import DownloadApp from "@/components/Home/DownloadApp";
 import { Suspense } from "react";
+import ReusableTabs from "@/components/ui/CustomeUi/ReusableTabs";
 
 const tabConfig = [
     { label: "For Guests", value: "guest", content: null },
